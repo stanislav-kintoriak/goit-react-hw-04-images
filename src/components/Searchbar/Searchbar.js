@@ -22,14 +22,14 @@ export class Searchbar extends Component {
 
   render() {
     return (
-      <header className="searchbar">
-        <form className="form">
-          <button type="submit" class="button">
-            <span className="button-label">Search</span>
+      <header className={css.searchbar}>
+        <form className={css.form}>
+          <button type="submit" className={css.button}>
+            <span className={css.button-label}>Search</span>
           </button>
 
           <input
-            className="input"
+            className={css.input}
             type="text"
             autocomplete="off"
             autofocus
