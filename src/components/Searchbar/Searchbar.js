@@ -1,5 +1,7 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import css from './Searchbar.module.css';
+import { ReactComponent as Icon } from '../svgs/icon.svg';
 
 export class Searchbar extends Component {
   state = {
@@ -8,8 +10,11 @@ export class Searchbar extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
-// !!!
+if(this.state.searchText.trim()=== ''){
+    return
+}
+this.props.onSubmit(this.state.searchText);
+this.state.reset();
   };
 
   handleChange = event => {
@@ -23,9 +28,9 @@ export class Searchbar extends Component {
   render() {
     return (
       <header className={css.searchbar}>
-        <form className={css.form}>
-          <button type="submit" className={css.button}>
-            <span className={css.button-label}>Search</span>
+        <form className={css.form} onSubmit = {this.state.handleSubmit}>
+          <button type="submit" className={css.search_button}>
+            <Icon/>
           </button>
 
           <input
@@ -35,10 +40,15 @@ export class Searchbar extends Component {
             autofocus
             placeholder="Search images and photos"
             value={this.state.searchText}
-            onChange={this.handleSubmit}
+            onChange={this.handleChange}
           />
         </form>
       </header>
     );
   }
+}
+
+
+Searchbar.propTypes = {
+    onSubmit:func.isRequired
 }

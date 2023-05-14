@@ -6,7 +6,6 @@ import { Button } from './Button/Button'
 
 import { ImageGallery } from './ImageGallery/ImageGallery';
 
-const API_KEY = '34931962-db4e3cf68e263d5dddbb75168'
 
 export class App extends Component {
 
@@ -17,16 +16,6 @@ state = {
   page:1,
 
 }
-
-
-// fetch
-
-// then
-
-
-
-
-
 
 formSubmitHandler = () => {
 
