@@ -10,15 +10,15 @@ export class Searchbar extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-if(this.state.searchText.trim()=== ''){
-    return
-}
-this.props.onSubmit(this.state.searchText);
-this.state.reset();
+    if (this.state.searchText.trim() === '') {
+      return;
+    }
+    this.props.onSubmit(this.state.searchText);
+    this.state.reset();
   };
 
   handleChange = event => {
-    this, setState({ serchText: event.target.value.toLowercase() });
+    this.setState({ searchText: event.target.value.toLowerCase() });
   };
 
   stateReset = () => {
@@ -28,16 +28,16 @@ this.state.reset();
   render() {
     return (
       <header className={css.searchbar}>
-        <form className={css.form} onSubmit = {this.state.handleSubmit}>
+        <form className={css.form} onSubmit={this.state.handleSubmit}>
           <button type="submit" className={css.search_button}>
-            <Icon/>
+            <Icon />
           </button>
 
           <input
             className={css.input}
             type="text"
-            autocomplete="off"
-            autofocus
+            autoComplete="off"
+            autoFocus
             placeholder="Search images and photos"
             value={this.state.searchText}
             onChange={this.handleChange}
@@ -48,7 +48,6 @@ this.state.reset();
   }
 }
 
-
 Searchbar.propTypes = {
-    onSubmit:func.isRequired
-}
+  onSubmit: PropTypes.func.isRequired,
+};
