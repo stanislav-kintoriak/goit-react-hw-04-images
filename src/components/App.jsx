@@ -16,56 +16,50 @@ export class App extends Component {
     isPicturesExist: false,
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     if (
       prevState.searchText !== this.state.searchText ||
       prevState.page !== this.state.page
     ) {
-      this.setState({ loading: true });
+      this.setState({ inLoading: true });
 
-      Api(this.state.searchText, this.state.page).then(result => {
-        if (result.totalHits === 0) {
-          console.log('no results');
-        }
-if(prevState.searchText !== this.state.searchText){
-  this.setState({
-    searchResults:result,
-    foundedPictures:result.hits,
-    isPicturesExist:false,
-  });
-  if(result.hits.length<result.totalHits){
-    this.setState({
-      isPicturesExist:true,
-    });
+      Api(this.state.searchText, this.state.page)
+        .then(result => {
+          if (result.totalHits === 0) {
+            console.log(111);
+          }
+          if (prevState.searchText !== this.state.searchText) {
+            this.setState({
+              searchResults: result,
+              foundedPictures: result.hits,
+              isPicturesExist: false,
+            });
+            if (result.hits.length < result.totalHits) {
+              this.setState({
+                isPicturesExist: true,
+              });
+            }
+          } else {
+            if (
+              this.state.page ===
+              Math.ceil(
+                this.state.searchResults.totalHits /
+                  this.state.searchResults.hits.length
+              )
+            ) {
+              this.setState({ isPicturesExist: false });
+            }
+            this.setState(prevState => ({
+              foundedPictures: [...prevState.foundedPictures, ...result.hits],
+            }));
+          }
+        })
+        .catch(error => console.log(error))
+        .finally(() => {
+          this.setState({ inLoading: false });
+        });
+    }
   }
-  }else{if (
-    this.state.page ===
-    Math.ceil(
-      this.state.searchResults.totalHits /
-        this.state.searchResults.hits.length
-    )
-  ){
-    this.setState({ isPicturesExist: false });
-  }
-  this.setState(prevState => ({
-    foundedPictures: [...prevState.foundedPictures, ...result.hits],
-  }));
-  }
-})
-.catch(error => console.log(error))
-.finally(() => {
-  this.setState({ inLoading: false });
-  // setTimeout(
-  //   () =>
-  //     window.scrollTo({
-  //       top: document.body.scrollHeight,
-  //       behavior: 'smooth',
-  //     }),
-  //   200
-  // );
-});
-}
-}
 
   formSubmitHandler = searchText => {
     this.setState({
@@ -94,5 +88,3 @@ if(prevState.searchText !== this.state.searchText){
     );
   }
 }
-
-

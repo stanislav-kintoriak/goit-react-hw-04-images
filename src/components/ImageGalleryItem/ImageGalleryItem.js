@@ -6,10 +6,10 @@ export const ImageGalleryItem = ({ pictureForRender, modalOpen }) => {
   const { webformatURL, largeImageURL, id } = pictureForRender;
   return (
     <li
-      className={css.gallery - item}
+      className={css.gallery_item}
       onClick={() => modalOpen({ largeImageURL, id })}
     >
-      <img className={css.gallery - item__img} src={webformatURL} alt={id} />
+      <img className={css.gallery_item_img} src={webformatURL} alt={id} />
     </li>
   );
 };

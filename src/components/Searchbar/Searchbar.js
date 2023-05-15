@@ -14,7 +14,7 @@ export class Searchbar extends Component {
       return;
     }
     this.props.onSubmit(this.state.searchText);
-    this.state.reset();
+    this.stateReset();
   };
 
   handleChange = event => {
@@ -28,7 +28,7 @@ export class Searchbar extends Component {
   render() {
     return (
       <header className={css.searchbar}>
-        <form className={css.form} onSubmit={this.state.handleSubmit}>
+        <form className={css.form} onSubmit={this.handleSubmit}>
           <button type="submit" className={css.search_button}>
             <Icon />
           </button>

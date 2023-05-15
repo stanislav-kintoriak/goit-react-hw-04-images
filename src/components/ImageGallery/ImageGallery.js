@@ -8,7 +8,7 @@ import { Modal } from '../Modal/Modal';
 
 import css from './ImageGallery.module.css';
 
-export class ImageGallery extends Comment {
+export class ImageGallery extends Component {
   state = { modalShow: false, largeImageURL: '', imageAlt: 0 };
 
   modalOpen = ({ largeImageURL, id }) => {
