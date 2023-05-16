@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 import { Component } from 'react';
 
 import css from './Modal.module.css';
@@ -10,7 +8,7 @@ export class Modal extends Component {
   }
 
   componentWillUnmount() {
-    window.clearEventListener('keydown', this.handleKeyDown);
+    window.removeEventListener('keydown', this.handleKeyDown);
   }
 
   handleKeyDown = event => {
@@ -20,7 +18,7 @@ export class Modal extends Component {
   };
 
   handleBackdropClick = event => {
-    if ((event.currentTarget = event.target)) {
+    if ((event.currentTarget === event.target)) {
       this.props.modalClose();
     }
   };
