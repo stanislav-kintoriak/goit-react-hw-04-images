@@ -4,7 +4,7 @@ import { Searchbar } from './Searchbar/Searchbar';
 import { Loader } from './Loader/Loader';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { LoadMoreButton } from './LoadMoreButton/LoadMoreButton';
-import { Api } from './Api/Api';
+import { Api } from '../Api/Api';
 
 export class App extends Component {
   state = {
