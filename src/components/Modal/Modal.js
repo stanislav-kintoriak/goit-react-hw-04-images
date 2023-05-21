@@ -1,8 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
 import css from './Modal.module.css';
 
 export const Modal = ({ modalClose, children }) => {
+
+  const handleKeyDown = useCallback(
+    e => {
+      if (e.code === 'Escape') {
+        modalClose();
+      }
+    },
+    [modalClose]
+  );
+
+
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
 
@@ -11,11 +22,7 @@ export const Modal = ({ modalClose, children }) => {
     };
   }, [handleKeyDown]);
 
-  const handleKeyDown = event => {
-    if (event.code === 'Escape') {
-      modalClose();
-    }
-  };
+  
 
   const handleBackdropClick = event => {
     if (event.currentTarget === event.target) {
